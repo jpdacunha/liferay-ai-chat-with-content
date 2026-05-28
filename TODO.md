@@ -1,0 +1,6 @@
+- rename remainin stuff wit keyywords : liferaty-compose-74, 74 etc ...
+- Install remaining docker dependencies : txtai, semanthic search
+- Create document dataset tool (recopy document lis in presales-document-agent)
+- Check semanthis search with OOTB Liferay features (chat bot + blue prints)
+- Install backend
+- Install front-end

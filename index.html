@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Liferay AI Chat with Content - Web Consoles</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --accent: #0f766e;
+      --border: #dbe3ef;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #ecfeff 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 860px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
+    }
+
+    .subtitle {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .service {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .service h2 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .service p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .service a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .service a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 2px 6px;
+      font-size: 0.9em;
+    }
+
+    footer {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Docker Compose Web Consoles</h1>
+    <p class="subtitle">Quick access to services exposed in <code>runtime/docker-compose.yml</code>.</p>
+
+    <section class="grid">
+      <article class="service">
+        <h2>Liferay</h2>
+        <p>Web port: 8080</p>
+        <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer">http://localhost:8080</a>
+      </article>
+
+      <article class="service">
+        <h2>Kibana</h2>
+        <p>Web port: 5601</p>
+        <a href="http://localhost:5601" target="_blank" rel="noopener noreferrer">http://localhost:5601</a>
+      </article>
+
+      <article class="service">
+        <h2>Elasticsearch</h2>
+        <p>API HTTP: 9200</p>
+        <a href="http://localhost:9200" target="_blank" rel="noopener noreferrer">http://localhost:9200</a>
+      </article>
+
+      <article class="service">
+        <h2>MySQL (database)</h2>
+        <p>No web console is exposed in this compose file. SQL access is available via a client on <code>localhost:3306</code>.</p>
+      </article>
+    </section>
+
+    <footer>
+      Ports can be customized using compose environment variables
+      (<code>LIFERAY_HOST_PORT</code>, <code>KIBANA_HOST_PORT</code>, <code>ELASTICSEARCH_HOST_PORT</code>, <code>MYSQL_HOST_PORT</code>).
+    </footer>
+  </main>
+</body>
+</html>
