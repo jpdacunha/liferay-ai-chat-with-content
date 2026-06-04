@@ -113,6 +113,20 @@ services:
     depends_on:
       kibana:
         condition: service_healthy
+  txtai:
+    build:
+      dockerfile: Dockerfile
+      context: txtai
+      args:
+        TXTAI_TAG: ${TXTAI_TAG:-latest}
+    ports:
+      - ${TXTAI_HOST_PORT:-8001}:8000
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/openapi.json', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 40s
 networks:
   fs74AICWD:
     name: fs74AICWD
