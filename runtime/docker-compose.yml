@@ -97,6 +97,8 @@ services:
       context: .
       dockerfile: ollama/ollama.Dockerfile
     gpus: all
+    networks: 
+      - fs74AICWD
     ports:
       - ${OLLAMA_HOST_PORT:-11434}:11434
     volumes:
@@ -119,6 +121,8 @@ services:
       context: txtai
       args:
         TXTAI_TAG: ${TXTAI_TAG:-latest}
+    networks: 
+      - fs74AICWD
     ports:
       - ${TXTAI_HOST_PORT:-8001}:8000
     healthcheck:

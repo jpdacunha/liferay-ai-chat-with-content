@@ -1,5 +1,6 @@
-- Install remaining docker dependencies : txtai, semanthic search
-- Create document dataset tool (recopy document lis in presales-document-agent)
-- Check semanthis search with OOTB Liferay features (chat bot + blue prints)
+- Install remaining docker dependencies : txtai, semanthic search => OK
+- Test TXTAI connection in system setting => 
 - Install backend
 - Install front-end
+- Create document dataset tool (recopy document lis in presales-document-agent)
+- Check semanthic search with OOTB Liferay features (chat bot + blue prints)

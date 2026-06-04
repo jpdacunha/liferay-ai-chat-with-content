@@ -3,4 +3,6 @@ path: /tmp/index
 writable: False
 
 embeddings:
-  path: sentence-transformers/all-MiniLM-L6-v2
+  #path: sentence-transformers/all-MiniLM-L6-v2
+  # Support for 768 vectors size
+  path: sentence-transformers/all-mpnet-base-v2
