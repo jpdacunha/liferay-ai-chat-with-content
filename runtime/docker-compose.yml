@@ -92,6 +92,27 @@ services:
       timeout: 5s
       retries: 30
       start_period: 30s
+  ollama:
+    build: 
+      context: .
+      dockerfile: ollama/ollama.Dockerfile
+    gpus: all
+    ports:
+      - ${OLLAMA_HOST_PORT:-11434}:11434
+    volumes:
+      - ollama_data:/root/.ollama/models
+    post_start:
+      - command: /home/ollama/install-models.sh
+        privileged: true
+    healthcheck:
+      test: ["CMD", "ollama", "list"]  # Check if Ollama is responding
+      interval: 10s                    # Run the health check every 10 seconds
+      timeout: 30s                     # Timeout for the health check is 30 seconds
+      retries: 5                       # Retry 5 times before marking it as unhealthy
+      start_period: 10s                # Wait 10 seconds before starting health checks
+    depends_on:
+      kibana:
+        condition: service_healthy
 networks:
   fs74AICWD:
     name: fs74AICWD
@@ -105,3 +126,4 @@ volumes:
   liferay-osgi-modules:
   liferay-osgi-war:
   mysql:
+  ollama_data:
