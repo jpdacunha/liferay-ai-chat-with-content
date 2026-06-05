@@ -131,6 +131,25 @@ services:
       timeout: 5s
       retries: 20
       start_period: 40s
+  chatbot-backend:
+    build:
+      dockerfile: client-extensions/chatbot-backend/Dockerfile
+      context: ../liferay-workspace
+    networks: 
+      - fs74AICWD
+    ports:
+      - ${CHATBOT_BACKEND_HOST_PORT:-58081}:58081
+    depends_on:
+      liferay:
+        condition: service_healthy
+    environment:
+      - SPRING_PROFILES_ACTIVE=${AI_CHATBOT_BACKEND_SPRING_PROFILES_ACTIVE:-localdocker}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:58081/ready | grep -q 'READY' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
 networks:
   fs74AICWD:
     name: fs74AICWD
