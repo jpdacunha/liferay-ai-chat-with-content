@@ -1,0 +1,24 @@
+assemble:
+    - from: build/static
+      into: static
+    #- from: assets
+    #  into: static      
+chatbot-frontend-custom-element-frontend:
+    cssURLs:
+        - css/main.*.css
+    friendlyURLMapping: chatbot-frontend
+    htmlElementName: chatbot-frontend
+    instanceable: false
+    name: Chatbot
+    portletCategoryName: category.client-extensions
+    type: customElement
+    urls:
+        - js/main.*.js
+    useESM: true
+#
+# Ongoing breaking change : unable to package static content. Eception thrown when trying to deploy the client extension with static content type. The error is as follows:
+# com.liferay.client.extension.exception.ClientExtensionEntryTypeException: Unknown type staticContent
+#
+#chatbot-frontend-custom-element-frontend-static:
+    #name: Chatbot Static Content
+    #type: staticContent

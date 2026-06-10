@@ -1,1 +1,9 @@
-{}
+{
+	"private": true,
+	"workspaces": {
+		"packages": [
+			"client-extensions/chatbot-frontend",
+			"client-extensions/liferay-sample-custom-element-react-scripts"
+		]
+	}
+}
