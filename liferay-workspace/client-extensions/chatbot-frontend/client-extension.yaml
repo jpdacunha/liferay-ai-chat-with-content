@@ -16,7 +16,7 @@ chatbot-frontend-custom-element-frontend:
         - js/main.*.js
     useESM: true
 #
-# Ongoing breaking change : unable to package static content. Eception thrown when trying to deploy the client extension with static content type. The error is as follows:
+# Ongoing breaking change : unable to package static content. Exception thrown when trying to deploy the client extension with static content type. The error is as follows:
 # com.liferay.client.extension.exception.ClientExtensionEntryTypeException: Unknown type staticContent
 #
 #chatbot-frontend-custom-element-frontend-static:
