@@ -12,6 +12,9 @@
 		]
 	},
 	"dependencies": {
+		"@clayui/alert": "^3.165.0",
+		"@clayui/css": "^3.165.0",
+		"@clayui/icon": "^3.165.0",
 		"dompurify": "^3.1.7",
 		"fetch-event-stream": "^0.1.5",
 		"marked": "^15.0.0",

@@ -1,5 +1,6 @@
 export const Liferay = window.Liferay || {
-	OAuth2: {
+	// Removed from Q2.2026
+	/*OAuth2: {
 		getAuthorizeURL: () => '',
 		getBuiltInRedirectURL: () => '',
 		getIntrospectURL: () => '',
@@ -14,7 +15,7 @@ export const Liferay = window.Liferay || {
 			return {};
 		},
 		fetch: (_url, _options = {}) => { },
-	},
+	},*/
 	ThemeDisplay: {
 		getCompanyGroupId: () => 0,
 		getScopeGroupId: () => 0,
@@ -28,3 +29,29 @@ export const Liferay = window.Liferay || {
 	},
 	authToken: '',
 };
+
+export function isSignedIn() {
+	return Liferay.ThemeDisplay.isSignedIn();
+}
+
+export function getOAuth2Client(erc) {
+
+	if (!erc) {
+		throw new Error("ERC (External Reference Code) is required");
+	}
+
+	if (typeof Liferay !== "undefined" && Liferay.OAuth2Client) {
+		return Promise.resolve(
+			Liferay.OAuth2Client.FromUserAgentApplication(erc)
+		);
+	}
+
+	/* Magic comment to ignore module résolution at build time*/
+	return import(/* webpackIgnore: true */ "@liferay/oauth2-provider-web/client").then(function (m) {
+		return m.FromUserAgentApplication(erc);
+	}).catch(function (error) {
+		console.error("Error loading OAuth2 client module:", error);
+		throw error;
+	});
+	
+}

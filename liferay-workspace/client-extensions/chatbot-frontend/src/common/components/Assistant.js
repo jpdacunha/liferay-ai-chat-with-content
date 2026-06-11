@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ChatBot from "react-chatbotify";
 
-import { Liferay } from '../services/liferay/liferay.js';
+import { Liferay, getOAuth2Client } from '../services/liferay/liferay.js';
 import { oAuthRequest, getServerUrl } from '../services/liferay/request.js';
 import { events } from 'fetch-event-stream';
 import {marked} from 'marked';
@@ -12,7 +12,7 @@ let oAuth2Client;
 let serverURL;
 
 try {
-	oAuth2Client = Liferay.OAuth2Client.FromUserAgentApplication(
+	oAuth2Client = await getOAuth2Client(
 		'chatbot-backend-spring-boot-oauth-application-user-agent'
 	);
 

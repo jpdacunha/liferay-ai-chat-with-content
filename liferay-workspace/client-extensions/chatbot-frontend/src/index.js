@@ -5,16 +5,18 @@
 
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-
+import { isSignedIn } from './common/services/liferay/liferay.js';
+import Alert from '@clayui/alert';
+import '@clayui/css/lib/css/atlas.css';
+import ClayIconSpriteContext from '@clayui/icon';
 import Assistant from './common/components/Assistant.js';
 
 import './common/styles/index.scss';
 
 const App = ({route}) => {
-
 	return (
 		<div>
-			<Assistant/>
+			{isSignedIn() ? <Assistant/> : <Alert title="WARNING" displayType="warning">Please sign in before using the assistant.</Alert>}
 		</div>
 	);
 };

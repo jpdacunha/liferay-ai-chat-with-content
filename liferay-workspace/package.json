@@ -5,5 +5,8 @@
 			"client-extensions/chatbot-frontend",
 			"client-extensions/liferay-sample-custom-element-react-scripts"
 		]
+	},
+	"dependencies": {
+		"@clayui/alert": "^3.165.0"
 	}
 }
