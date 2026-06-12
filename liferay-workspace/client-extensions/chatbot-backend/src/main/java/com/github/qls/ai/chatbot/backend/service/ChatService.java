@@ -126,14 +126,14 @@ public class ChatService {
 		streamingAssistant.chat(conversationId, userMessage.singleText())
 								.map(this::transformToChatResponse)
 								.doOnNext(chatResponse -> {
-									if (_log.isInfoEnabled()) {
-										_log.info("Streaming chat response chunk: " + chatResponse);
+									if (_log.isDebugEnabled()) {
+										_log.debug("Streaming chat response chunk: " + chatResponse);
 									}
 									chatResponseSink.tryEmitNext(chatResponse);
 								})
 								.doOnComplete(()-> {
-									if (_log.isInfoEnabled()) {
-										_log.info("Streaming chat response completed");
+									if (_log.isDebugEnabled()) {
+										_log.debug("Streaming chat response completed");
 									}
 				                    ChatResponse completionResponse = ChatResponse.builder()
 				        					.aiMessage("Stream completed")
@@ -188,10 +188,16 @@ public class ChatService {
 
 		jsonObject.put("attributes", attributesObject);
 
+		String userMessage = chatRequest.getUserMessage();
+
+		if (_log.isInfoEnabled()) {
+			_log.info("Using userMessage for search query : " + userMessage);
+		}
+
 		Map<String, List<String>> itemDatas = WebClient
 				.create(String.join("", lxcDXPServerProtocol, "://", lxcDXPMainDomain, "/o/search/v1.0/search")).post()
 				.uri(uriBuilder -> uriBuilder.queryParam("pageSize", "5").queryParam("nestedFields", "embedded")
-						.queryParam("search", chatRequest.getUserMessage()).build())
+						.queryParam("search", userMessage).build())
 				.accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
 				.header(HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()).bodyValue(jsonObject.toString())
 				.retrieve().bodyToMono(String.class).flatMap(this::parseAndExtractItemData)
@@ -211,7 +217,7 @@ public class ChatService {
 
 	private Mono<Map<String, List<String>>> parseAndExtractItemData(String jsonString) {
 		if (_log.isInfoEnabled()) {
-			_log.info("Result search: " + jsonString);
+			_log.info("Result of similarity search: " + jsonString);
 		}
 		return Mono.fromCallable(() -> new JSONObject(jsonString)).flatMap(rootObject -> {
 			if (!rootObject.has("items") || rootObject.getJSONArray("items").length() == 0) {

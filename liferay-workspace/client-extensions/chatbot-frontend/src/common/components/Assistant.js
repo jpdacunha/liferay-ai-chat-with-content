@@ -38,8 +38,6 @@ const getConversationId = () => {
 	return conversationId;
 };
 
-
-
 const handleUserMessage = async (params) => {
 	try {
 
