@@ -219,7 +219,7 @@ function Assistant() {
 			showAvatar: true,
 			avatar: '/o/qls-ai-chatbot-custom-element-frontend/images/chatbot_avatar.jpg',
 			simStream: true,
-			dangerouslySetInnerHtml: true
+			dangerouslySetInnerHTML: true
 		},
 		fileAttachment: {
 			disabled: true
